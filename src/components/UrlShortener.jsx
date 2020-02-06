@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
+
 const API_LINK = `/api/v1`
 export const UrlShortener = (props) => {
     const [long_url, setUrl] = useState();
     const [link, setLink] = useState();
+    const [copiedLink, setCopiedLink] = useState(false);
 
     const handleOnUrlSubmit = (url) => {
         //API call here
@@ -39,12 +42,27 @@ export const UrlShortener = (props) => {
             <br />
             <input type="button" onClick={(e)=>handleOnUrlSubmit(document.querySelector(".text-longUrl").value)} value="Shorten Url!" />
             <br />
+            <div>
+                {(
+                    link ? (
+                        <React.Fragment>
+                            <span>{link}</span>
+                            <CopyToClipboard text={link}
+                                onCopy={() => setCopiedLink(true)}>
+                                <button>Copy to Clipboard</button>
+                            </CopyToClipboard>
+                        </React.Fragment>
+
+                    )
+                        : false
+                )}
             {
-                link? <span>{link}</span> 
-                : false
+                    copiedLink ? <span>Copied!</span> :
+                        false
             }
         </div>
-    )
 
+        </div>
+    )
 
 }
