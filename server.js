@@ -1,7 +1,6 @@
 require('dotenv-safe').config();
 const express = require('express');
 const bodyParser = require('body-parser');
-const cookieSession = require('cookie-session');
 
 const app = express();
 
@@ -11,10 +10,6 @@ const urlShortenerRoute = require('./server/shortenerAPI');
 //TODO: logging using Winston
 //TODO: server API testing using Mocha 
 
-app.use(cookieSession({
-    maxAge: 1000 * 60 * 60 * 24 * 14, //2 weeks expiry day,
-    keys: process.env.SESSION_KEY
-}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended:false}));
 
