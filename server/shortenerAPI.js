@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const fetch = require('node-fetch');
+const isUrl = require('is-valid-http-url');
 
 const BITLY_API_PATH = `${process.env.BITLY_API_PATH}/v4`;
 const {BITLY_API_TOKEN} = process.env;
@@ -34,10 +35,8 @@ fetch(`${BITLY_API_PATH}/groups`, {
         router.post('/shorten', (req, res, next) => {
             const { url } = req.body;
 
-            try {
-                new URL(url);
-            } catch (error) {
-                res
+            if (!isUrl(url)) {
+                return res
                     .status(400)
                     .json({
                         data: {
@@ -45,8 +44,7 @@ fetch(`${BITLY_API_PATH}/groups`, {
                             hint: "Please make sure url is a fully qualified url, e.g. https://www.example.com"
                         }
                     });
-                return;
-            }
+            }            
 
             fetch(`${BITLY_API_PATH}/shorten`, {
                 method: "POST",
