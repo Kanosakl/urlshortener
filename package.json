@@ -12,7 +12,7 @@
     "clean": "rm -r dist .cache"
   },
   "engines": {
-    "node":"12.13.0"
+    "node": "12.13.0"
   },
   "repository": {
     "type": "git",
@@ -26,6 +26,7 @@
   "homepage": "https://github.com/Kanosakl/urlshortener#readme",
   "dependencies": {
     "body-parser": "^1.19.0",
+    "cookie-session": "^1.4.0",
     "dotenv-safe": "^8.2.0",
     "express": "^4.17.1",
     "node-fetch": "^2.6.0",
