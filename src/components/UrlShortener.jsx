@@ -39,9 +39,16 @@ export const UrlShortener = (props) => {
 
     return (
         <div className="urlshortener">
-            <input type="text" className="text-longUrl" placeholder="Enter your long URL here!" />
+            <input type="text" className="text-longUrl" placeholder="Enter your long URL here!"
+                onKeyDown={(e) => {
+                    if (e.key === 'Enter') handleOnUrlSubmit(document.querySelector(".text-longUrl").value);
+                    }
+                }
+            />
             <br />
-            <input type="button" onClick={(e) => handleOnUrlSubmit(document.querySelector(".text-longUrl").value)} value="Shorten Url!" />
+            <input type="button" value="Shorten Url!"
+                onClick={(e) => handleOnUrlSubmit(document.querySelector(".text-longUrl").value)}
+            />
             <br />
             <div>
                 {(
