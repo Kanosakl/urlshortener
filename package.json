@@ -11,6 +11,9 @@
     "build": "parcel build ./src/index.html --no-source-maps",
     "clean": "rm -r dist .cache"
   },
+  "engines": {
+    "node":"12.13.0"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Kanosakl/urlshortener.git"
