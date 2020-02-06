@@ -1,4 +1,23 @@
 .navbar-brand {
     font-size: 1.55rem;
     font-weight: 400;
-} 
+}
+
+.urlshortener {
+    padding: 10px 10px 10px 10px;
+}
+
+input[type="button"] {
+    height: 50px;
+}
+
+@media only screen and (max-width: 600px) {
+    .urlshortener {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .urlshortener-clipboard {
+        margin-top: 0.5rem;
+    }
+}

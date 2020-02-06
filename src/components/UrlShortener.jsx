@@ -47,24 +47,27 @@ export const UrlShortener = (props) => {
                 onClick={(e) => handleOnUrlSubmit(document.querySelector(".text-longUrl").value)}
             />
             <br />
-            <div>
+            <div className="urlshortener-result">
                 {(
                     link ? (
                         <React.Fragment>
                             <span>{link}</span>
-                            <CopyToClipboard text={link}
-                                onCopy={() => setCopiedLink(true)}>
-                                <button>Copy to Clipboard</button>
-                            </CopyToClipboard>
+                            <br />
+                            <div className="urlshortener-clipboard">
+                                <CopyToClipboard text={link}
+                                    onCopy={() => setCopiedLink(true)}>
+                                    <button>Copy to Clipboard</button>
+                                </CopyToClipboard>
+                                {
+                                    copiedLink ? <span>  Copied!</span> :
+                                        false
+                                }
+                            </div>
                         </React.Fragment>
 
                     )
                         : false
-                )}
-                {
-                    copiedLink ? <span>Copied!</span> :
-                        false
-                }
+                )}     
             </div>
 
         </div>
