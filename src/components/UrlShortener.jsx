@@ -16,24 +16,21 @@ export const UrlShortener = (props) => {
             },
             body: JSON.stringify({ url })
         })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(response.json());
-                }
+        .then(response => {
+            if (!response.ok) throw response;
 
-                return response.json();
+            return response.json();
+        })
+        .then(body => {
+            setLink(body.link);
+        })
+        .catch(error => {
+            //handle bad response
+            error.json().then(body => {
+                const {description, hint} = body.data
+                alert(`${description}, ${hint}`);
             })
-            .then(body => {
-                //change Urls state
-                console.log(body);
-                setLink(body.link);
-            })
-            .catch(error => {
-                //handle bad response
-            })
-            .finally(() => {
-                //clean up UI
-            })
+        })
     }
 
 
