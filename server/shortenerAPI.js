@@ -5,7 +5,6 @@ const fetch = require('node-fetch');
 const BITLY_API_PATH = `${process.env.BITLY_API_PATH}/v4`;
 let bitlyGroupGUID;
 
-fetch(`${BITLY_API_PATH}/groups`)
     .then(response => response.json())
     .then(body => {
         if (body.groups && body.groups.length)
@@ -47,7 +46,6 @@ fetch(`${BITLY_API_PATH}/groups`)
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                    "Authorization": `Bearer ${process.env.BITLY_API_TOKEN}`
                 },
                 body: JSON.stringify({
                     "group_guid": bitlyGroupGUID,
@@ -56,7 +54,6 @@ fetch(`${BITLY_API_PATH}/groups`)
                 })
             })
                 .then(response => {
-                    if (!response.ok)
                         throw new Error({
                             statusCode: response.statusCode,
                             body: response.json()
@@ -66,8 +63,6 @@ fetch(`${BITLY_API_PATH}/groups`)
                 })
                 .then(body => {
                     const { link, long_url, created_at } = body;
-                    res.json({ link, long_url, created_at });
-                    return;
                 })
 
         })

@@ -6,7 +6,7 @@ const cookieSession = require('cookie-session');
 const app = express();
 
 const DEFAULT_API_ROUTE = "/api/v1";
-const bitlyRoute = require('./server/bitlyAPI');
+const urlShortenerRoute = require('./server/shortenerAPI');
 
 //TODO: logging using Winston
 //TODO: server API testing using Mocha 
@@ -18,12 +18,12 @@ app.use(cookieSession({
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended:false}));
 
-app.use(`${DEFAULT_API_ROUTE}/bitly/`, bitlyRoute.router);
+app.use(`${DEFAULT_API_ROUTE}/`, urlShortenerRoute.router);
 app.use('/',express.static('./dist'));
 
 //handle all error
 app.use((error,req,res,next) => {
-    console.logs(error);
+    console.log(error);
     res
     .status(500)
     .json({
