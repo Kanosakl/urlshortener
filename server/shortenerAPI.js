@@ -61,16 +61,20 @@ fetch(`${BITLY_API_PATH}/groups`, {
                 })
             })
                 .then(response => {
+                    if (!response.ok) {
                         throw new Error({
                             statusCode: response.statusCode,
                             body: response.json()
                         });
+                    }
 
                     return response.json();
                 })
                 .then(body => {
                     const { link, long_url, created_at } = body;
+                    return res.json({ link, long_url, created_at });
                 })
+                .catch(next)
 
         })
 
