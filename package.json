@@ -1,0 +1,35 @@
+{
+  "name": "urlshortener",
+  "version": "1.0.0",
+  "description": "url shortener homework",
+  "main": "server.js",
+  "scripts": {
+    "watch": "npm run clean && parcel watch ./src/index.html",
+    "debug": "node ./server.js --inspect-brk",
+    "start": "node ./server.js",
+    "pre-build": "npm run clean",
+    "build": "parcel build ./src/index.html --no-source-maps",
+    "clean": "rm -r dist .cache"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kanosakl/urlshortener.git"
+  },
+  "author": "Davion Teh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kanosakl/urlshortener/issues"
+  },
+  "homepage": "https://github.com/Kanosakl/urlshortener#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "dotenv-safe": "^8.2.0",
+    "express": "^4.17.1",
+    "node-fetch": "^2.6.0",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.12.4"
+  }
+}
