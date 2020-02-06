@@ -3,8 +3,14 @@ const router = express.Router();
 const fetch = require('node-fetch');
 
 const BITLY_API_PATH = `${process.env.BITLY_API_PATH}/v4`;
+const {BITLY_API_TOKEN} = process.env;
 let bitlyGroupGUID;
 
+fetch(`${BITLY_API_PATH}/groups`, {
+    headers:{
+        'Authorization': `Bearer ${BITLY_API_TOKEN}`
+    }
+})
     .then(response => response.json())
     .then(body => {
         if (body.groups && body.groups.length)
@@ -16,7 +22,7 @@ let bitlyGroupGUID;
                     .status(500)
                     .json({
                         data: {
-                            description: "BitlyAPI not ready yet",
+                            description: "shortener API not ready yet",
                             hint: "Try again later"
                         }
                     })
@@ -46,6 +52,7 @@ let bitlyGroupGUID;
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
+                    "Authorization": `Bearer ${BITLY_API_TOKEN}`
                 },
                 body: JSON.stringify({
                     "group_guid": bitlyGroupGUID,
