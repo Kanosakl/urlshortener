@@ -30,4 +30,4 @@ app.use((error,req,res,next) => {
 })
 
 app.listen(process.env.PORT);
-console.log(`listening at ${process.env.PORT}`);
+console.log(`listening at port ${process.env.PORT}`);
